@@ -6,14 +6,14 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+class OsmPage extends StatefulWidget {
+  const OsmPage({super.key});
 
   @override
-  State<MapPage> createState() => _MapPageState();
+  State<OsmPage> createState() => _OsmPageState();
 }
 
-class _MapPageState extends State<MapPage> {
+class _OsmPageState extends State<OsmPage> {
   InAppWebViewController? webViewController;
   bool isLoading = true;
   int loadingPercentage = 0;
@@ -23,7 +23,6 @@ class _MapPageState extends State<MapPage> {
     super.initState();
     // InAppWebViewController.setWebContentsDebuggingEnabled(true);
     getLocation();
-    debugPrint('asdasd 111');
   }
 
   void getLocation() async {
@@ -43,13 +42,10 @@ class _MapPageState extends State<MapPage> {
     }
 
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.low);
 
     debugPrint(
-      "Location: ${position.latitude}, ${position.longitude} ||| asdasd",
-    );
-
-    debugPrint('asdasd 222');
+        "Location: ${position.latitude}, ${position.longitude} ||| asdasd");
   }
 
   Uri? _extractFallbackUrl(String intentUrl) {
@@ -74,13 +70,11 @@ class _MapPageState extends State<MapPage> {
         children: [
           InAppWebView(
             initialUrlRequest: URLRequest(
-              url: Uri.parse(
-                  'https://emerging-wired-killdeer.ngrok-free.app/portal/treatment'),
+              url: Uri.parse('https://www.openstreetmap.org/'),
             ),
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 javaScriptEnabled: true,
-                useShouldOverrideUrlLoading: true,
               ),
               android: AndroidInAppWebViewOptions(
                 useHybridComposition: true,

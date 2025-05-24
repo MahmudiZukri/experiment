@@ -1,4 +1,7 @@
+import 'package:experiment/google_map.dart';
 import 'package:experiment/map_page.dart';
+import 'package:experiment/mri_business.dart';
+import 'package:experiment/osm_page.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -52,6 +55,39 @@ class FirstPage extends StatelessWidget {
                 );
               },
               child: const Text('flutter_inappwebview'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const OsmPage(),
+                  ),
+                );
+              },
+              child: const Text('osm'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GoggleMap(),
+                  ),
+                );
+              },
+              child: const Text('google map'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MriBusinessMap(),
+                  ),
+                );
+              },
+              child: const Text('mri business'),
             ),
           ],
         ),
